@@ -1,6 +1,6 @@
 ﻿<h3>Tarefas</h3>
 
-<table class="table">
+@*<table class="table">
     <thead>
         <tr>
             <th>Acao</th>
@@ -11,12 +11,27 @@
     </thead>
     <tbody>
         <ListaGenerica ListaItem="tarefas">
-            <Lista Context="tarefa">
+            <Carregando></Carregando>
+            <SemRegistro></SemRegistro>
+            <Lista Context="tarefa" >
                 <TarefaIndividual tarefa="tarefa" RemoverTarefa="RemoveTarefa" />
             </Lista>
         </ListaGenerica>
     </tbody>
-</table>
+</table>*@
+
+<Grid ListaItens="tarefas" Context="tarefa" Titem="Tarefa">
+    <Cabecalho>
+        <td>Data</td>
+        <td>Descrição</td>
+        <td>Concluída</td>
+    </Cabecalho>
+    <Itens>
+        <td>@tarefa.DataCriacao.Date.ToString("dd/MM/yyyy")</td>
+        <td>@tarefa.Descricao</td>
+        <td>@tarefa.Concluida</td>
+    </Itens>
+</Grid>
 
 
 @if (tarefas is not null)

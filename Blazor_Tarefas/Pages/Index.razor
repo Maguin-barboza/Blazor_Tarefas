@@ -1,7 +1,18 @@
 ﻿@page "/"
 @inject HttpClient http
 
-<Tarefas tarefas="GetTarefas()" Titulo="Lista de Tarefas" />
+@*<Tarefas tarefas="GetTarefas()" Titulo="Lista de Tarefas" />*@
+
+<Grid Items="GetTarefas()" class="table table-bordered" RowClass='(row, index) => row.Id > 5 ? "table-success" : ""'>
+    <GridColumn TRowData="Tarefa" Expression="t => t.DataCriacao" Format="d" />
+    <GridColumn TRowData="Tarefa" Expression="t => t.Descricao" />
+    <GridColumn TRowData="Tarefa" Expression="t => t.Concluida" />
+    <GridColumn TRowData="Tarefa" Title="# Orders">@context.Id orders</GridColumn>
+    <GridColumn TRowData="Tarefa">
+        <a href="/edit/@context.Id">edit</a>
+    </GridColumn>
+</Grid>
+
 
 
 @code{
